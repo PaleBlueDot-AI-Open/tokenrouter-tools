@@ -3,7 +3,7 @@ set -euo pipefail
 
 # ============================================================
 # tokenrouter_to_codex installer
-# Usage: curl -fsSL <URL>/install.sh | bash -s -- --key <YOUR_KEY>
+# Usage: curl -fsSL <URL>/install.sh | bash -s -- <YOUR_KEY>
 # ============================================================
 
 BASE_URL="${TOKENROUTER_BASE_URL:-https://raw.githubusercontent.com/PaleBlueDot-AI-Open/tokenrouter-tools/main}"
@@ -28,7 +28,7 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-[[ -z "$KEY" ]] && error "Usage: curl -fsSL <URL>/install.sh | bash -s -- --key <YOUR_KEY>"
+[[ -z "$KEY" ]] && error "Usage: curl -fsSL <URL>/install.sh | bash -s -- <YOUR_KEY>"
 
 # ---- detect platform ----
 OS="$(uname -s)"
@@ -75,7 +75,7 @@ fi
 info "Installed ${BINARY_NAME} to ${INSTALL_DIR}/${BINARY_NAME}"
 
 # ---- run ----
-info "Running: ${BINARY_NAME} --key ****${KEY: -4}"
-"${INSTALL_DIR}/${BINARY_NAME}" --key "$KEY"
+info "Running: ${BINARY_NAME} ****${KEY: -4}"
+"${INSTALL_DIR}/${BINARY_NAME}" "$KEY"
 
 info "Done!"
